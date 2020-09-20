@@ -1,6 +1,6 @@
 {
   "name": "@dr.cash/controlhooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Handle data flow inside React's rendering cycles using hooks ",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/drcash/control-hooks/src"
+    "url": "https://bitbucket.org/drcash/react-control-hooks/src"
   },
   "keywords": [
     "react",
