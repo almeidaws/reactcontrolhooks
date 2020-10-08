@@ -1,6 +1,6 @@
 {
-  "name": "@dr.cash/controlhooks",
-  "version": "1.0.1",
+  "name": "@dr.cash/reactcontrolhooks",
+  "version": "1.0.2",
   "description": "Handle data flow inside React's rendering cycles using hooks ",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   ],
   "author": "Gustavo Almeida",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.13.1"
   }
 }
