@@ -1,6 +1,6 @@
 {
-  "name": "@dr.cash/reactcontrolhooks",
-  "version": "1.0.2",
+  "name": "@dr.cash/controlhooks",
+  "version": "1.0.3",
   "description": "Handle data flow inside React's rendering cycles using hooks ",
   "main": "index.js",
   "scripts": {
