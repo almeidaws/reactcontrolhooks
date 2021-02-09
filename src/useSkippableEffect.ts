@@ -1,10 +1,10 @@
-import { useState, useMemo, useEffect } from "react";
-import useDelayedEffect from "./useDelayedEffect";
+import { useState, useMemo, useEffect, SetStateAction } from 'react';
+import useDelayedEffect from './useDelayedEffect';
 
 const useSkippableEffect = (
-  effect,
-  dependencies,
-  ignoredValues = [null],
+  effect: () => void,
+  dependencies: any[],
+  ignoredValues = Array<any>(),
   times = 1
 ) => {
   const [prevDependencies, setPrevDependencies] = useState(dependencies);
@@ -17,7 +17,7 @@ const useSkippableEffect = (
   );
 
   useEffect(() => {
-    setPrevDependencies(mergedDependencies);
+    setPrevDependencies(mergedDependencies as SetStateAction<any[]>);
   }, [mergedDependencies]);
 
   useDelayedEffect(

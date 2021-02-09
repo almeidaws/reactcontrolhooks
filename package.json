@@ -1,24 +1,66 @@
 {
-  "name": "@dr.cash/controlhooks",
-  "version": "1.0.4",
-  "description": "Handle data flow inside React's rendering cycles using hooks ",
-  "main": "index.js",
+  "version": "2.0.0",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "module": "dist/react-control-hooks.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/react-control-hooks.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/react-control-hooks.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.9.2",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.0",
+    "husky": "^5.0.9",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "size-limit": "^4.9.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/gustavoalmeidadrcash/react-control-hooks/src"
+    "url": "https://github.com/almeidaws/reactcontrolhooks"
   },
-  "keywords": [
-    "react",
-    "hooks",
-    "control",
-    "flow"
-  ],
-  "author": "Gustavo Almeida",
-  "license": "ISC",
-  "peerDependencies": {
-    "react": "^16.13.1"
-  }
+  "name": "react-control-hooks",
+  "author": "Gustavo Almeida, Fernando Lemos, Arthur de Castro",
+  "description": "Handle data flow inside React's rendering cycles using hooks"
 }
