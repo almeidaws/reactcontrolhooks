@@ -12,7 +12,6 @@ const useDelayedEffect = (
       setCount(count + 1);
       return;
     }
-
     return effect();
   }, dependencies);
 };
