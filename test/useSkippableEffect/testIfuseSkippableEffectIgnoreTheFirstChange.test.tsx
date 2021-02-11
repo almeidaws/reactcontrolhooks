@@ -1,16 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import TestHowManyTimesUseDelayedEffectIsCalled from './src/TestHowManyTimesUseDelayedEffectIsCalled';
 import { act } from 'react-dom/test-utils';
+import TestUseSkippableEffect from '../Components/TestUseSkippableEffect';
 
 describe('it', () => {
-  it('useDelayedEffect calls effect three times', () => {
+  it('Test if useSkippableEffect Ignore The first change', () => {
     const div = document.createElement('div');
     act(() => {
       ReactDOM.render(
-        <TestHowManyTimesUseDelayedEffectIsCalled
-          dependencies={[[1], [2], [3], [4]]}
-          times={1}
+        <TestUseSkippableEffect
+          dependencies={[[1], [2], [3], [null], [4], [5], [6]]}
+          ignoredValues={[null, 3]}
+          times={2}
         />,
         div
       );

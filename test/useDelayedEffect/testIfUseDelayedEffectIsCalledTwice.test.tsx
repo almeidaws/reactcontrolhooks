@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import TestHowManyTimesUseDelayedEffectIsCalled from './src/TestHowManyTimesUseDelayedEffectIsCalled';
+import TestUseDelayedEffect from '../Components/TestUseDelayedEffect';
 import { act } from 'react-dom/test-utils';
 
 describe('it', () => {
@@ -8,10 +8,7 @@ describe('it', () => {
     const div = document.createElement('div');
     act(() => {
       ReactDOM.render(
-        <TestHowManyTimesUseDelayedEffectIsCalled
-          dependencies={[[1], [2]]}
-          times={0}
-        />,
+        <TestUseDelayedEffect dependencies={[[1], [2]]} times={0} />,
         div
       );
     });

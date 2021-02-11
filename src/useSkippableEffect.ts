@@ -4,7 +4,7 @@ import useDelayedEffect from './useDelayedEffect';
 const useSkippableEffect = (
   effect: () => void,
   dependencies: any[],
-  ignoredValues = Array<any>(),
+  ignoredValues = Array<any>(null),
   times = 1
 ) => {
   const [prevDependencies, setPrevDependencies] = useState(dependencies);
