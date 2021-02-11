@@ -3,7 +3,7 @@ import { useState } from 'react';
 function useFiredHook<P extends any, R>(
   useDeferredHook: (...r: P[]) => R,
   ...outerArgs: P[]
-) {
+): [(...innerArgs: P[]) => void, R] {
   const [previousArgs, setPreviousArgs] = useState(Array<P>());
   const result = useDeferredHook.apply(
     null,
