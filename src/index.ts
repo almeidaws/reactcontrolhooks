@@ -5,3 +5,6 @@ export { default as useIf } from './useIf';
 export { default as useRerun } from './useRerun';
 export { default as useQueue } from './useQueue';
 export { default as useMultiplexer } from './useMultiplexer';
+export { default as useAutoFire } from './useAutoFire';
+export { default as useIterate } from './useIterate';
+export { default as useFiredIterate } from './useFiredIterate';
