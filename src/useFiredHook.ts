@@ -1,16 +1,17 @@
 import { useState } from 'react';
+import { Hook, HookArgs } from './Types';
 
-function useFiredHook<P extends any, R>(
-  useDeferredHook: (...r: P[]) => R,
-  ...outerArgs: P[]
-): [(...innerArgs: P[]) => void, R] {
+function useFiredHook<P, R>(
+  useDeferredHook: Hook<P, R>,
+  ...outerArgs: HookArgs<P>
+): [(...innerArgs: HookArgs<P>) => void, R] {
   const [previousArgs, setPreviousArgs] = useState(Array<P | undefined>());
   const result = useDeferredHook.apply(
     null,
     previousArgs.length === 0 ? Array<any | null>(null) : previousArgs
   );
 
-  const fire = (...innerArgs: P[]) => {
+  const fire = (...innerArgs: HookArgs<P>) => {
     if (innerArgs.length > 0) setPreviousArgs(innerArgs);
     else
       setPreviousArgs(

@@ -1,3 +1,4 @@
+export * from './Types';
 export { default as useFiredHook } from './useFiredHook';
 export { default as useDelayedEffect } from './useDelayedEffect';
 export { default as useSkippableEffect } from './useSkippableEffect';
