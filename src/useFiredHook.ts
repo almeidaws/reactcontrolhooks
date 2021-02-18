@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { Neutralizable } from './Types';
+import { Hook, HookParams, Neutralizable } from './Types';
 
-type Hook<P extends object, R> = (args: Neutralizable<P>) => R;
-
-function useFiredHook<P extends object, R>(
+function useFiredHook<P extends HookParams, R>(
   useDeferredHook: Hook<P, R>,
   outerArgs?: Neutralizable<P>
 ): [(innerArgs?: Neutralizable<P>) => void, R] {

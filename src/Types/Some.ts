@@ -1,2 +1,4 @@
-type Some<T extends object> = T;
+import HookParams from './HookParams';
+
+type Some<T extends HookParams> = T;
 export default Some;

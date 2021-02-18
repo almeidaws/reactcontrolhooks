@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Hook, Neutralizable, useFiredHook } from '../../src';
+import { Hook, HookParams, Neutralizable, useFiredHook } from '../../src';
 
-const TestUseFiredHook = <P extends object, R>(props: {
+const TestUseFiredHook = <P extends HookParams, R>(props: {
   useDeferredHook: Hook<P, R>;
   outerArgs: Neutralizable<P>[];
   getFire?: (fire: (arg?: Neutralizable<P>) => void) => void;

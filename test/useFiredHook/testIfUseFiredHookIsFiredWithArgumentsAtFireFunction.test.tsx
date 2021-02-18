@@ -4,20 +4,18 @@ import { act } from 'react-dom/test-utils';
 import { Neutralizable } from '../../src';
 import TestUseFiredHook from '../Components/TestUseFiredHook';
 
-const useFoo = (arg: Neutralizable<{ name: string }>) => arg?.name;
+const useFoo = (name: Neutralizable<string>) => name;
 
 describe('it', () => {
   it('Test if useFiredHook is fired with arguments at fire function', () => {
     const div = document.createElement('div');
-    let retrievedFire:
-      | null
-      | ((args: Neutralizable<{ name: string }>) => void) = null;
+    let retrievedFire: null | ((args: Neutralizable<string>) => void) = null;
 
     act(() => {
       ReactDOM.render(
         <TestUseFiredHook
           useDeferredHook={useFoo}
-          outerArgs={[{ name: '7' }]}
+          outerArgs={['7'] as string[]}
           getFire={fire => (retrievedFire = fire)}
         />,
         div
@@ -25,7 +23,7 @@ describe('it', () => {
     });
 
     act(() => {
-      retrievedFire?.({ name: 'foo' });
+      retrievedFire?.('foo');
     });
 
     expect(div.textContent).toBe('foo');

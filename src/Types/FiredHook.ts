@@ -1,5 +1,6 @@
 import Neutralizable from './Neutralizable';
-type FiredHook<P extends object, R> = (
+import HookParams from './HookParams';
+type FiredHook<P extends HookParams, R> = (
   args: Neutralizable<P>
 ) => [(args: Neutralizable<P>) => void, R];
 export default FiredHook;

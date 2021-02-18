@@ -1,8 +1,8 @@
 import useFiredHook from './useFiredHook';
 import useIterate from './useIterate';
-import { FallibleHook, Neutralizable } from './Types';
+import { FallibleHook, HookParams, Neutralizable } from './Types';
 
-const useFiredIterate = <P extends object, R, E extends Error>(
+const useFiredIterate = <P extends HookParams, R, E extends Error>(
   hook: FallibleHook<P, R, E>,
   args: Neutralizable<P>[],
   buffer: number
