@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
+import { FiredHook, HookParams, Neutralizable } from './Types';
 
-const useAutoFire = <
-  P,
-  R,
-  S extends (...r: P[]) => [(...innerArgs: P[]) => void, R]
->(
-  hook: S,
-  ...args: P[]
+const useAutoFire = <P extends HookParams, R>(
+  hook: FiredHook<P, R>,
+  args: Neutralizable<P>
 ): R => {
-  const [fire, result] = hook.apply(null, args);
+  const [fire, result] = hook.apply(null, [args]);
   useEffect(() => {
     fire();
-  }, args);
+  }, [args]);
   return result;
 };
 

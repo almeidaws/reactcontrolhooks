@@ -1,13 +1,12 @@
 import { useDelayedEffect, useSkippableEffect } from './index';
 import { useState } from 'react';
+import { Fallible, FiredHook, HookParams } from './Types';
 
-type FiredHook<P extends any, R> = (
-  ...r: P[]
-) => [(...r: P[]) => void, [R, Error | null]];
-
-const useQueue = <P extends any, R>(firedHook: FiredHook<P, R>) => {
+const useQueue = <P extends HookParams, R, E extends Error>(
+  firedHook: FiredHook<P, Fallible<R, E>>
+) => {
   const [fire, [result, error]] = firedHook();
-  const [results, setResults] = useState(Array<R>());
+  const [results, setResults] = useState(Array<R | null>());
   const [queue, setQueue] = useState(Array<P>());
 
   useDelayedEffect(() => {
