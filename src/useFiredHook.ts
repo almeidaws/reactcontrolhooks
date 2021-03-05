@@ -5,7 +5,9 @@ function useFiredHook<P extends HookParams, R>(
   useDeferredHook: Hook<P, R>,
   outerArgs?: Neutralizable<P>
 ): [(innerArgs?: Neutralizable<P>) => void, R] {
-  const [previousArgs, setPreviousArgs] = useState<Neutralizable<P>>(undefined);
+  const [previousArgs, setPreviousArgs] = useState<
+    Neutralizable<P> | undefined
+  >(null);
   const result = useDeferredHook.apply(null, [previousArgs]);
 
   const fire = (innerArgs?: Neutralizable<P>) => {

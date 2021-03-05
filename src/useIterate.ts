@@ -2,7 +2,7 @@ import { FallibleHook, HookParams, Neutralizable } from './Types';
 
 const useIterate = <P extends HookParams, R, E extends Error>(
   hook: FallibleHook<P, R, E>,
-  args: Neutralizable<Neutralizable<P>[]>,
+  args: Neutralizable<Neutralizable<P>[]> | undefined,
   buffer: number
 ): [R[] | null, E[] | null] => {
   if (buffer <= 0)

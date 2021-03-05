@@ -1,7 +1,6 @@
 import Some from './Some';
-import Nothing from './Nothing';
-import Ignore from './Ignore';
 import HookParams from './HookParams';
+import Neutralize from './Neutralize';
 
-type Neutralizable<T extends HookParams> = Some<T> | Nothing | Ignore;
+type Neutralizable<T extends HookParams> = Some<T> | Neutralize;
 export default Neutralizable;

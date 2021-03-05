@@ -10,7 +10,7 @@ const useFiredIterate = <P extends HookParams, R, E extends Error>(
   (args: Neutralizable<Neutralizable<P>[]>) => void,
   [R[] | null, E[] | null]
 ] => {
-  const useIterateOverHook = (args: Neutralizable<Neutralizable<P>[]>) => {
+  const useIterateOverHook = (args?: Neutralizable<Neutralizable<P>[]>) => {
     return useIterate(hook, args, buffer);
   };
   return useFiredHook(useIterateOverHook, args);
