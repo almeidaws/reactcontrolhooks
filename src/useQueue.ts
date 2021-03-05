@@ -1,6 +1,7 @@
-import { useDelayedEffect, useSkippableEffect } from './index';
 import { useState } from 'react';
 import { Fallible, FiredHook, HookParams } from './Types';
+import useDelayedEffect from './useDelayedEffect';
+import useSkippableEffect from './useSkippableEffect';
 
 const useQueue = <P extends HookParams, R, E extends Error>(
   firedHook: FiredHook<P, Fallible<R, E>>
