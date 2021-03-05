@@ -1,14 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
+import { Neutralizable } from '../../src';
 import TestUseFiredHook from '../Components/TestUseFiredHook';
 
-const useFoo = (_arg: string | null) => 'eae';
+const useFoo = (_name: Neutralizable<string>) => 'eae';
 
 describe('it', () => {
   it('Test if useFiredHook is fired with no arguments', () => {
     const div = document.createElement('div');
-    let retrievedFire: null | ((...args: string[]) => void) = null;
+    let retrievedFire: null | ((args?: Neutralizable<string>) => void) = null;
 
     act(() => {
       ReactDOM.render(

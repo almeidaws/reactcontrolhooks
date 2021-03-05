@@ -1,25 +1,19 @@
 import { useState } from 'react';
+import { Hook, HookParams, Neutralizable } from './Types';
 
-interface Hook<P, R> {
-  args: Array<P> | P;
-  hook: (...args: P[]) => R;
+interface MultiplexedHook<P extends HookParams, R> {
+  args: Neutralizable<P>;
+  hook: Hook<P, R>;
 }
 
-const useMultiplexer = <P, R>(
-  channels: Hook<P, R>[],
+const useMultiplexer = <P extends HookParams, R>(
+  channels: MultiplexedHook<P, R>[],
   turnedOffReturn: R
 ): [number | null, (arg: number) => void, R] => {
   const [activeChannel, setActiveChannel] = useState(null as number | null);
 
   const results = channels.map(({ hook, args }, index) => {
-    return hook.apply(
-      null,
-      activeChannel === index
-        ? Array.isArray(args)
-          ? args
-          : [args]
-        : Array<any>(null)
-    );
+    return hook.apply(null, activeChannel === index ? [args] : [null]);
   });
 
   const multiplex = (

@@ -1,20 +1,13 @@
 import { useState } from 'react';
+import { Hook, HookParams, Neutralizable } from './Types';
 
-function useRerun<P, R, S extends (...r: P[]) => R>(
-  hook: S,
-  ...args: P[]
+function useRerun<P extends HookParams, R>(
+  hook: Hook<P, R>,
+  args: Neutralizable<P>
 ): [() => void, R] {
   const [active, setActive] = useState(0);
-  const firstResult = hook.apply(
-    null,
-    active === 0 ? args : Array<any | null>(null)
-  );
-  const secondResult = hook.apply(
-    null,
-    active === 1 ? args : Array<any | null>(null)
-  );
-
-  // console.log(`active: ${active}`);
+  const firstResult = hook.apply(null, active === 0 ? [args] : [null]);
+  const secondResult = hook.apply(null, active === 1 ? [args] : [null]);
 
   const rerun = () => {
     setActive(active === 0 ? 1 : 0);

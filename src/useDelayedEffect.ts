@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, DependencyList, EffectCallback } from 'react';
 
 const useDelayedEffect = (
-  effect: () => void,
-  dependencies: any[],
+  effect: EffectCallback,
+  dependencies: DependencyList,
   times = 1
 ) => {
   const [count, setCount] = useState(0);

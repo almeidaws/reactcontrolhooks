@@ -1,21 +1,18 @@
 import { useState } from 'react';
+import { Hook, HookParams, Neutralizable } from './Types';
 
-function useFiredHook<P extends any, R>(
-  useDeferredHook: (...r: P[]) => R,
-  ...outerArgs: P[]
-): [(...innerArgs: P[]) => void, R] {
-  const [previousArgs, setPreviousArgs] = useState(Array<P | undefined>());
-  const result = useDeferredHook.apply(
-    null,
-    previousArgs.length === 0 ? Array<any | null>(null) : previousArgs
-  );
+function useFiredHook<P extends HookParams, R>(
+  useDeferredHook: Hook<P, R>,
+  outerArgs?: Neutralizable<P>
+): [(innerArgs?: Neutralizable<P>) => void, R] {
+  const [previousArgs, setPreviousArgs] = useState<
+    Neutralizable<P> | undefined
+  >(null);
+  const result = useDeferredHook.apply(null, [previousArgs]);
 
-  const fire = (...innerArgs: P[]) => {
-    if (innerArgs.length > 0) setPreviousArgs(innerArgs);
-    else
-      setPreviousArgs(
-        outerArgs.length === 0 ? Array<P | undefined>(undefined) : outerArgs
-      );
+  const fire = (innerArgs?: Neutralizable<P>) => {
+    if (innerArgs !== undefined) setPreviousArgs(innerArgs);
+    else setPreviousArgs(outerArgs);
   };
 
   return [fire, result];
