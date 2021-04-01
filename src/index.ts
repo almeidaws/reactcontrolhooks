@@ -9,3 +9,4 @@ export { default as useMultiplexer } from './useMultiplexer';
 export { default as useAutoFire } from './useAutoFire';
 export { default as useIterate } from './useIterate';
 export { default as useFiredIterate } from './useFiredIterate';
+export { default as useDelay } from './useDelay';
