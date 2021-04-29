@@ -5,10 +5,10 @@ import { FallibleHook, HookParams, Neutralizable } from './Types';
 const useFiredIterate = <P extends HookParams, R, E extends Error>(
   hook: FallibleHook<P, R, E>,
   buffer: number
-): [
-  (args?: Neutralizable<Neutralizable<P>[]>) => void,
-  [R[] | null, E[] | null]
-] => {
+): {
+  fire: (args?: Neutralizable<Neutralizable<P>[]>) => void;
+  result: { results: R[] | null; errors: E[] | null };
+} => {
   const useIterateOverHook = (args?: Neutralizable<Neutralizable<P>[]>) => {
     return useIterate(hook, args, buffer);
   };
