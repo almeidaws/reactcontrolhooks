@@ -5,7 +5,7 @@ const useAutoFire = <P extends HookParams, R>(
   hook: FiredHook<P, R>,
   args: Neutralizable<P>
 ): R => {
-  const [fire, result] = hook.apply(null, [args]);
+  const { fire, result } = hook.apply(null, [args]);
   useEffect(() => {
     fire();
   }, [args]);
