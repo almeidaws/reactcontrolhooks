@@ -6,7 +6,7 @@ import useSkippableEffect from './useSkippableEffect';
 const useQueue = <P extends HookParams, R, E extends Error>(
   firedHook: FiredHook<P, Fallible<R, E>>
 ) => {
-  const [fire, [result, error]] = firedHook();
+  const { fire, result, error } = firedHook();
   const [results, setResults] = useState(Array<R | null>());
   const [queue, setQueue] = useState(Array<P>());
 
@@ -29,7 +29,7 @@ const useQueue = <P extends HookParams, R, E extends Error>(
     setQueue(prev => [...prev, arg]);
   };
 
-  return [enqueue, [results, error]];
+  return { enqueue, results, firstError: error };
 };
 
 export default useQueue;

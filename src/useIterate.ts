@@ -1,6 +1,6 @@
 import { FallibleHook, HookParams, Neutralizable } from './Types';
 
-const useIterate = <P extends HookParams, R, E extends Error>(
+const useIterate = <P extends HookParams, R extends object, E extends Error>(
   hook: FallibleHook<P, R, E>,
   args: Neutralizable<Neutralizable<P>[]> | undefined,
   buffer: number

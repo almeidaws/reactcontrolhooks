@@ -3,7 +3,7 @@ import { Hook, HookParams, Neutralizable } from './Types';
 
 function useFiredHook<P extends HookParams, R>(
   useDeferredHook: Hook<P, R>
-): { fire: (args?: Neutralizable<P>) => void; result: R } {
+): { fire: (args?: Neutralizable<P>) => void } & R {
   const [previousArgs, setPreviousArgs] = useState<
     Neutralizable<P> | undefined
   >(null);
@@ -13,7 +13,7 @@ function useFiredHook<P extends HookParams, R>(
     setPreviousArgs(innerArgs);
   };
 
-  return { fire, result };
+  return { fire, ...result };
 }
 
 export default useFiredHook;
