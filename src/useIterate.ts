@@ -10,9 +10,6 @@ const useIterate = <P extends HookParams, R extends object, E extends Error>(
       `Buffer size at useIterate must be greater than or equal to 1, but it's ${buffer}`
     );
 
-  if (args !== null) {
-  }
-
   const returns = Array.from({ length: buffer }, (_value, index) =>
     hook.apply(
       null,
